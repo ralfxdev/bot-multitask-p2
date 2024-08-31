@@ -10,6 +10,13 @@ public class Respuesta {
     private String respuestaTexto;
     private Timestamp fechaRespuesta;
 
+    public Respuesta(long telegramId, String seccion, int preguntaId, String respuestaTexto) {
+        this.seccion = seccion;
+        this.telegramId = telegramId;
+        this.preguntaId = preguntaId;
+        this.respuestaTexto = respuestaTexto;
+    }
+
     public int getId() {
         return id;
     }

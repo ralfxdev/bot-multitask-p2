@@ -4,6 +4,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import umg.pgm2.botTelegram.BotMultiTask;
 import umg.pgm2.botTelegram.BotRegistra;
+import umg.pgm2.botTelegram.botCuestionario;
 import umg.pgm2.botTelegram.botPregunton;
 import umg.pgm2.model.User;
 import umg.pgm2.service.UserService;
@@ -146,16 +147,12 @@ public class Main {
     public static void main(String[] args) {
         try{
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            botPregunton bot = new botPregunton();
+            botCuestionario bot = new botCuestionario();
             botsApi.registerBot(bot);
-            System.out.println("/help");
             System.out.println("Bot registered!");
         }
         catch(Exception e){
             System.out.println("Error: " + e.getMessage());
         }
-        //PruebaActualizacionUsuario();
-
-        //explicacionUsoMap();
     }
 }
