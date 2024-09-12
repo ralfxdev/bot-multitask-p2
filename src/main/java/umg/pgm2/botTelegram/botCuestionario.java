@@ -7,8 +7,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import umg.pgm2.model.Cuestionario;
 import umg.pgm2.model.User;
 import umg.pgm2.model.Respuesta;
+import umg.pgm2.service.CuestionarioService;
 import umg.pgm2.service.UserService;
 import umg.pgm2.service.RespuestaService;
 
@@ -121,10 +123,16 @@ public class botCuestionario extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
 
-        rows.add(crearFilaBoton("Sección 1", "SECTION_1"));
-        rows.add(crearFilaBoton("Sección 2", "SECTION_2"));
-        rows.add(crearFilaBoton("Sección 3", "SECTION_3"));
-        rows.add(crearFilaBoton("Sección 4", "SECTION_4"));
+        List<Cuestionario> cuestionarios = new CuestionarioService().getAllCuestionarios();
+
+        for(Cuestionario c : cuestionarios) {
+            rows.add(crearFilaBoton(c.getNombre(), "SECTION_"+c.getId()));
+        }
+
+//        rows.add(crearFilaBoton("Sección 1", "SECTION_1"));
+//        rows.add(crearFilaBoton("Sección 2", "SECTION_2"));
+//        rows.add(crearFilaBoton("Sección 3", "SECTION_3"));
+//        rows.add(crearFilaBoton("Sección 4", "SECTION_4"));
 
         markup.setKeyboard(rows);
         message.setReplyMarkup(markup);
